@@ -59,15 +59,15 @@ router.post('/', async (request, env) => {
       case CREDITS_COMMAND.name.toLowerCase(): {
         const options = interaction.data.options;
         if (!options || options.length === 0 || !options[0].value) {
-          return new JsonResponse({ 
-            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE, 
-            data: { content: 'Email is required.' }
+          return new JsonResponse({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: { content: 'Email is required.' },
           });
         }
-        
+
         //send post req to dv api
-        const url =  'https://desktop.vision/api/credits'
-        const key = env.DV_KEY
+        const url = 'https://desktop.vision/api/credits';
+        const key = env.DV_KEY;
 
         const response = await fetch(url, {
           headers: {
@@ -75,10 +75,10 @@ router.post('/', async (request, env) => {
             'x-api-key': key,
           },
           method: 'POST',
-          body: JSON.stringify({email: options[0].value}),
+          body: JSON.stringify({ email: options[0].value }),
         });
         const body = await response.json();
-        console.log(body)
+        console.log(body);
         return new JsonResponse({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: { content: body.message },
