@@ -1,4 +1,4 @@
-import { CREDITS_COMMAND } from './commands.js';
+import { CREDITS_COMMAND, REGISTER_COMMAND } from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
 import fetch from 'node-fetch';
@@ -35,7 +35,7 @@ const response = await fetch(url, {
     Authorization: `Bot ${token}`,
   },
   method: 'PUT',
-  body: JSON.stringify([CREDITS_COMMAND]),
+  body: JSON.stringify([CREDITS_COMMAND, REGISTER_COMMAND]),
 });
 
 if (response.ok) {

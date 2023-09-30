@@ -3,7 +3,7 @@ import { describe, it, beforeEach, afterEach } from 'mocha';
 import { InteractionResponseType, InteractionType } from 'discord-interactions';
 import { CREDITS_COMMAND } from '../src/commands.js';
 import sinon from 'sinon';
-import server from '../src/server.js';
+import server from '../src/server/server.js';
 
 describe('Server', () => {
   describe('GET /', () => {
