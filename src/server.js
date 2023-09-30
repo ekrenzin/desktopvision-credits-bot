@@ -8,9 +8,7 @@ import {
   InteractionType,
   verifyKey,
 } from 'discord-interactions';
-import { AWW_COMMAND, INVITE_COMMAND } from './commands.js';
-import { getCuteUrl } from './reddit.js';
-import { InteractionResponseFlags } from 'discord-interactions';
+import { CREDITS_COMMAND } from './commands.js';
 
 class JsonResponse extends Response {
   constructor(body, init) {
@@ -58,24 +56,32 @@ router.post('/', async (request, env) => {
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     // Most user commands will come as `APPLICATION_COMMAND`.
     switch (interaction.data.name.toLowerCase()) {
-      case AWW_COMMAND.name.toLowerCase(): {
-        const cuteUrl = await getCuteUrl();
-        return new JsonResponse({
-          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-          data: {
-            content: cuteUrl,
+      case CREDITS_COMMAND.name.toLowerCase(): {
+        const options = interaction.data.options;
+        if (options.length === 0 || !options[0].value) {
+          return new JsonResponse({ 
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE, 
+            data: { content: 'Email is required.' }
+          });
+        }
+        
+        //send post req to dv api
+        const url =  'https://desktop.vision/api/credits'
+        const key = env.DV_KEY
+
+        const response = await fetch(url, {
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': key,
           },
+          method: 'POST',
+          body: JSON.stringify({email: options[0].value}),
         });
-      }
-      case INVITE_COMMAND.name.toLowerCase(): {
-        const applicationId = env.DISCORD_APPLICATION_ID;
-        const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${applicationId}&scope=applications.commands`;
+        const body = await response.json();
+        console.log(body)
         return new JsonResponse({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-          data: {
-            content: INVITE_URL,
-            flags: InteractionResponseFlags.EPHEMERAL,
-          },
+          data: { content: body.message },
         });
       }
       default:

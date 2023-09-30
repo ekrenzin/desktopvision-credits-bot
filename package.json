@@ -1,7 +1,7 @@
 {
-  "name": "awwbot",
+  "name": "desktopvision-credits-bot",
   "version": "1.0.0",
-  "description": "A simple discord bot that uses intents to post pictures from r/aww",
+  "description": "A simple discord bot for Desktop Vision",
   "type": "module",
   "private": true,
   "main": "src/server.js",
@@ -16,11 +16,12 @@
     "publish": "wrangler deploy"
   },
   "keywords": [],
-  "author": "Justin Beckwith <justin.beckwith@gmail.com>",
+  "author": "Ean Krenzin-Blank <ean@eankrenzin.com>",
   "license": "MIT",
   "dependencies": {
     "discord-interactions": "^3.4.0",
-    "itty-router": "^4.0.13"
+    "itty-router": "^4.0.13",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "c8": "^8.0.0",
@@ -33,6 +34,6 @@
     "ngrok": "^5.0.0-beta.2",
     "prettier": "^3.0.1",
     "sinon": "^16.0.0",
-    "wrangler": "^3.0.1"
+    "wrangler": "^3.10.1"
   }
 }
