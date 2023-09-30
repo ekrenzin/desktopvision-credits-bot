@@ -58,7 +58,7 @@ router.post('/', async (request, env) => {
     switch (interaction.data.name.toLowerCase()) {
       case CREDITS_COMMAND.name.toLowerCase(): {
         const options = interaction.data.options;
-        if (options.length === 0 || !options[0].value) {
+        if (!options || options.length === 0 || !options[0].value) {
           return new JsonResponse({ 
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE, 
             data: { content: 'Email is required.' }

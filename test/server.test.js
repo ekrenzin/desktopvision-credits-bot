@@ -5,13 +5,13 @@ import {
   InteractionType,
   InteractionResponseFlags,
 } from 'discord-interactions';
-import { AWW_COMMAND } from '../src/commands.js';
+import { CREDITS_COMMAND } from '../src/commands.js';
 import sinon from 'sinon';
 import server from '../src/server.js';
 
 describe('Server', () => {
   describe('GET /', () => {
-    it('should return a greeting message with the Discord application ID', async () => {
+    it('should return a message', async () => {
       const request = {
         method: 'GET',
         url: new URL('/', 'http://discordo.example'),
@@ -58,11 +58,11 @@ describe('Server', () => {
       expect(body.type).to.equal(InteractionResponseType.PONG);
     });
 
-    it('should handle an AWW command interaction', async () => {
+    it('should handle an credits command interaction', async () => {
       const interaction = {
         type: InteractionType.APPLICATION_COMMAND,
         data: {
-          name: AWW_COMMAND.name,
+          name: CREDITS_COMMAND.name,
         },
       };
 
@@ -80,6 +80,7 @@ describe('Server', () => {
 
       const response = await server.fetch(request, env);
       const body = await response.json();
+
       expect(body.type).to.equal(
         InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       );
