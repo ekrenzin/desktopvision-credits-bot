@@ -20,14 +20,24 @@ async function farmCredits(interaction, env) {
     body: JSON.stringify({ discord_uid: interaction.member.user.id }),
   });
   const body = await response.json();
-  console.log(body);
-  return new JsonResponse({
+  
+  // Determine current time in PST
+  const currentPSTTime = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+  const hour = currentPSTTime.getHours();
+  
+  // Conditionally set flags
+  const flags = (hour >= 9 && hour < 17) ? null : 64;
+
+  const jsonResponseData = {
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: {
-      content: body.message,
-      flags: 64  // Ephemeral flag
-    },
-  });
+    data: { content: body.message }
+  };
+  
+  if (flags !== null) {
+    jsonResponseData.data.flags = flags;
+  }
+
+  return new JsonResponse(jsonResponseData);
 }
 
 //https://desktopvision-credits.eankrenzin.workers.dev
