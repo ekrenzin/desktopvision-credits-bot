@@ -23,8 +23,13 @@ async function farmCredits(interaction, env) {
   console.log(body);
   return new JsonResponse({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: { content: body.message },
+    data: {
+      content: body.message,
+      flags: 64  // Ephemeral flag
+    },
   });
 }
+
+//https://desktopvision-credits.eankrenzin.workers.dev
 
 export { farmCredits };
