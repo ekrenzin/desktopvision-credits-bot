@@ -24,9 +24,9 @@ async function farmCredits(interaction, env) {
   // Determine current time in PST
   const currentPSTTime = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
   const hour = currentPSTTime.getHours();
-  
+  const invalid_hours = (hour >= 9 && hour < 17);
   // Conditionally set flags
-  const flags = (hour >= 9 && hour < 17) ? null : 64;
+  const flags = invalid_hours && false ? 64 : null;
 
   const jsonResponseData = {
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
