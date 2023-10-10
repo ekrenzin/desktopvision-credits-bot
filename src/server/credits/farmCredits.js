@@ -3,7 +3,7 @@ import {
 } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
 
-async function farmCredits(interaction, env) {
+async function farmCredits(interaction, env, type = "hourly") {
   const options = interaction.data.options;
 
   //send post req to dv api
@@ -17,16 +17,10 @@ async function farmCredits(interaction, env) {
       'x-api-key': key,
     },
     method: 'POST',
-    body: JSON.stringify({ discord_uid: interaction.member.user.id }),
+    body: JSON.stringify({ discord_uid: interaction.member.user.id, type }),
   });
   const body = await response.json();
-  
-  // Determine current time in PST
-  const currentPSTTime = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
-  const hour = currentPSTTime.getHours();
-  const invalid_hours = (hour >= 9 && hour < 17);
-  // Conditionally set flags
-  const flags = invalid_hours && false ? 64 : null;
+  const flags =  null;
 
   const jsonResponseData = {
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
