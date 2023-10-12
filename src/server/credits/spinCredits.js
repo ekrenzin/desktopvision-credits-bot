@@ -26,7 +26,7 @@ async function spinCredits(interaction, env) {
   if (body.credits === 0) {
     const jsonResponseData = {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: { content: "You have no credits." },
+      data: { content: 'You have no credits.' },
       flags: 64,
     };
 
