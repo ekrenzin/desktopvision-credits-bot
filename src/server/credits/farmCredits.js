@@ -1,5 +1,6 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
+import fetch from 'node-fetch';
 
 async function farmCredits(interaction, env, type = "hourly") {
   const options = interaction.data.options;
@@ -7,6 +8,12 @@ async function farmCredits(interaction, env, type = "hourly") {
   const url = 'https://desktop.vision/api/credits';
   const key = env.DV_KEY;
 
+  if (!interaction || !interaction.member || !interaction.member.user) {
+    return new JsonResponse({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: { content: 'You must be logged in to use this command.' },
+    });
+  }
   const response = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',

@@ -13,6 +13,7 @@ import { JsonResponse } from './responseTypes.js';
 import { farmCredits } from './credits/farmCredits.js';
 import { spinCredits } from './credits/spinCredits.js';
 import { registerUser } from './register/registerUser.js';
+import { Response } from 'node-fetch';
 
 const router = Router();
 
