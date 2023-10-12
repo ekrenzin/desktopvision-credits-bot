@@ -8,7 +8,12 @@ import {
   InteractionType,
   verifyKey,
 } from 'discord-interactions';
-import { CREDITS_COMMAND, REGISTER_COMMAND, SPIN_COMMAND, DAILY_COMMAND } from '../commands.js';
+import {
+  CREDITS_COMMAND,
+  REGISTER_COMMAND,
+  SPIN_COMMAND,
+  DAILY_COMMAND,
+} from '../commands.js';
 import { JsonResponse } from './responseTypes.js';
 import { farmCredits } from './credits/farmCredits.js';
 import { spinCredits } from './credits/spinCredits.js';
@@ -59,7 +64,7 @@ router.post('/', async (request, env) => {
         return await spinCredits(interaction, env);
       }
       case DAILY_COMMAND.name.toLowerCase(): {
-        return await farmCredits(interaction, env, "daily");
+        return await farmCredits(interaction, env, 'daily');
       }
       default:
         return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });

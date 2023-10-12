@@ -1,4 +1,9 @@
-import { CREDITS_COMMAND, REGISTER_COMMAND, SPIN_COMMAND, DAILY_COMMAND } from './commands.js';
+import {
+  CREDITS_COMMAND,
+  REGISTER_COMMAND,
+  SPIN_COMMAND,
+  DAILY_COMMAND,
+} from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
 import fetch from 'node-fetch';
@@ -19,17 +24,17 @@ dotenv.config({ path: '.dev.vars' });
 function getDiscordCredentials(args) {
   // Check if the script was run with 'register:test'
   if (args.includes('--test')) {
-    console.log('Using test credentials')
-      return {
-          token: process.env.DISCORD_TEST_TOKEN,
-          applicationId: process.env.DISCORD_TEST_APPLICATION_ID,
-      };
+    console.log('Using test credentials');
+    return {
+      token: process.env.DISCORD_TEST_TOKEN,
+      applicationId: process.env.DISCORD_TEST_APPLICATION_ID,
+    };
   } else {
-    console.log('Using production credentials')
-      return {
-          token: process.env.DISCORD_TOKEN,
-          applicationId: process.env.DISCORD_APPLICATION_ID,
-      };
+    console.log('Using production credentials');
+    return {
+      token: process.env.DISCORD_TOKEN,
+      applicationId: process.env.DISCORD_APPLICATION_ID,
+    };
   }
 }
 
@@ -57,7 +62,12 @@ const response = await fetch(url, {
     Authorization: `Bot ${token}`,
   },
   method: 'PUT',
-  body: JSON.stringify([CREDITS_COMMAND, REGISTER_COMMAND, DAILY_COMMAND, SPIN_COMMAND]),
+  body: JSON.stringify([
+    CREDITS_COMMAND,
+    REGISTER_COMMAND,
+    DAILY_COMMAND,
+    SPIN_COMMAND,
+  ]),
 });
 
 if (response.ok) {

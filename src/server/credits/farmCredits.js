@@ -2,9 +2,10 @@ import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
 import fetch from 'node-fetch';
 
-async function farmCredits(interaction, env, type = "hourly") {
-  const options = interaction.data.options;
-  const local_url = "http://127.0.0.1:8081/desktop-vision/us-central1/handleAPI/api/credits";
+async function farmCredits(interaction, env, type = 'hourly') {
+  //const options = interaction.data.options;
+  // const local_url =
+  'http://127.0.0.1:8081/desktop-vision/us-central1/handleAPI/api/credits';
   const url = 'https://desktop.vision/api/credits';
   const key = env.DV_KEY;
 

@@ -11,7 +11,10 @@ class JsonResponse extends Response {
    */
   constructor(body, init = {}) {
     const jsonBody = JSON.stringify(body);
-    init.headers = { 'content-type': 'application/json;charset=UTF-8', ...init.headers };
+    init.headers = {
+      'content-type': 'application/json;charset=UTF-8',
+      ...init.headers,
+    };
     super(jsonBody, init);
   }
 }
