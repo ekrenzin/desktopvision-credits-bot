@@ -13,8 +13,7 @@ async function registerUser(interaction, env) {
   const userId = interaction.member.user.id;
 
   // Formulate API request
-  // const localUrl =
-  ('http://127.0.0.1:8081/desktop-vision/us-central1/handleAPI/api/credits/register');
+  // const localUrl = 'http://127.0.0.1:8081/desktop-vision/us-central1/handleAPI/api/credits/register';
   const url = 'https://desktop.vision/api/credits/register';
   const key = env.DV_KEY;
   const requestBody = JSON.stringify({ discord_uid: userId });
