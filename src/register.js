@@ -1,4 +1,9 @@
-import { CREDITS_COMMAND, REGISTER_COMMAND, SPIN_COMMAND, DAILY_COMMAND } from './commands.js';
+import {
+  CREDITS_COMMAND,
+  REGISTER_COMMAND,
+  SPIN_COMMAND,
+  DAILY_COMMAND,
+} from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
 import fetch from 'node-fetch';

@@ -9,13 +9,15 @@ export const CREDITS_COMMAND = {
 };
 
 export const REGISTER_COMMAND = {
-  name : 'register',
-  description: 'Register your discord account with your Desktop Vision account.',
+  name: 'register',
+  description:
+    'Register your discord account with your Desktop Vision account.',
 };
 
 export const SPIN_COMMAND = {
   name: 'spin',
-  description: 'Spin the wheel to win credits! 100 credits per spin. Win up to 1000 credits!',
+  description:
+    'Spin the wheel to win credits! 100 credits per spin. Win up to 1000 credits!',
 };
 
 export const DAILY_COMMAND = {
