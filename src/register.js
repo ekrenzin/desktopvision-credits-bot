@@ -11,8 +11,30 @@ import fetch from 'node-fetch';
 
 dotenv.config({ path: '.dev.vars' });
 
-const token = process.env.DISCORD_TOKEN;
-const applicationId = process.env.DISCORD_APPLICATION_ID;
+/**
+ * Fetch environment variables related to Discord for either test or production.
+ * @param {string[]} args - The command-line arguments.
+ * @returns {Object} An object containing the token and applicationId.
+ */
+function getDiscordCredentials(args) {
+  // Check if the script was run with 'register:test'
+  if (args.includes('--test')) {
+    console.log('Using test credentials')
+      return {
+          token: process.env.DISCORD_TEST_TOKEN,
+          applicationId: process.env.DISCORD_TEST_APPLICATION_ID,
+      };
+  } else {
+    console.log('Using production credentials')
+      return {
+          token: process.env.DISCORD_TOKEN,
+          applicationId: process.env.DISCORD_APPLICATION_ID,
+      };
+  }
+}
+
+const credentials = getDiscordCredentials(process.argv);
+const { token, applicationId } = credentials;
 
 if (!token) {
   throw new Error('The DISCORD_TOKEN environment variable is required.');
@@ -35,7 +57,7 @@ const response = await fetch(url, {
     Authorization: `Bot ${token}`,
   },
   method: 'PUT',
-  body: JSON.stringify([CREDITS_COMMAND, REGISTER_COMMAND, DAILY_COMMAND]),
+  body: JSON.stringify([CREDITS_COMMAND, REGISTER_COMMAND, DAILY_COMMAND, SPIN_COMMAND]),
 });
 
 if (response.ok) {

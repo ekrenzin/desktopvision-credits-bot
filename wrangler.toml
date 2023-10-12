@@ -2,6 +2,9 @@ name = "desktopvision-credits"
 main = "./src/server/server.js"
 compatibility_date="2023-05-18"
 
+[env.test]
+name = "beta-desktopvision-credits"
+
 # [secrets]
 # DISCORD_TOKEN
 # DISCORD_PUBLIC_KEY

@@ -12,8 +12,10 @@
     "test": "c8 mocha test",
     "fix": "eslint --fix \"**/*.js\"",
     "lint": "eslint \"**/*.js\"",
-    "register": "node src/register.js",
-    "publish": "wrangler deploy"
+    "register:prod": "node src/register.js",
+    "register:test": "node src/register.js --test",
+    "publish:test": "wrangler publish --env test",
+    "publish:prod": "wrangler deploy"
   },
   "keywords": [],
   "author": "Ean Krenzin-Blank <ean@eankrenzin.com>",
