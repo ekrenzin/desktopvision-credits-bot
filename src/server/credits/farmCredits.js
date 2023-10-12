@@ -18,16 +18,22 @@ async function farmCredits(interaction, env, type = "hourly") {
 
   const body = await response.json();
 
-  const embed = {
-    title: 'Credit Farming Response',
+  const finalEmbed = {
     description: body.message,
-    color: 0x0099ff, // You can customize the color
+    color: 0x0099ff,
+    footer: {
+      text: 'Want more play time? Visit https://desktop.vision/app/#/shop',
+    },
   };
 
   const jsonResponseData = {
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: { embeds: [embed] },
+    data: { embeds: [finalEmbed] },
   };
+
+  if (!body.credits || body.credits <= 100) {
+    jsonResponseData.data.flags = 64;
+  }
 
   return new JsonResponse(jsonResponseData);
 }
