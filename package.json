@@ -14,7 +14,7 @@
     "lint": "eslint \"**/*.js\"",
     "register:prod": "node src/register.js",
     "register:test": "node src/register.js --test",
-    "publish:test": "wrangler publish --env test",
+    "publish:test": "wrangler deploy --env test",
     "publish:prod": "wrangler deploy"
   },
   "keywords": [],
