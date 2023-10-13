@@ -1,0 +1,52 @@
+name: Generate Change Log
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - beta 
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+
+    - name: Get PR Description
+      id: pr
+      run: |
+        PR_BODY=$(gh pr view https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }} --json body -q ".body")
+        PR_BODY="${PR_BODY//'%'/'%25'}"
+        PR_BODY="${PR_BODY//$'\n'/'%0A'}"
+        PR_BODY="${PR_BODY//$'\r'/'%0D'}"
+        echo "::set-output name=body::$PR_BODY"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get Changed Files
+      id: changed-files
+      uses: jitterbit/get-changed-files@v1
+
+    - name: Update Changelog
+      run: |
+        DATE=$(date +'%m/%d/%Y')
+        echo -e "# Changelog ($DATE)\n" >> temp.md
+        echo -e "${{ steps.pr.outputs.body }}\n" >> temp.md
+        echo -e "## Files changed:\n" >> temp.md
+        for file in ${{ steps.changed-files.outputs.all }}; do
+          echo "- $file" >> temp.md
+        done
+        cat ./docs/changelog.md >> temp.md
+        mv temp.md ./docs/changelog.md
+
+    - name: Commit and Push
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add ./docs/changelog.md
+        git commit -m "Update changelog for PR #${{ github.event.pull_request.number }}"
+        git push
