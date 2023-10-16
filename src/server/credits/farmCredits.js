@@ -1,33 +1,45 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
+import fetch from 'node-fetch';
 
-async function farmCredits(interaction, env, type = 'hourly') {
+const REMOTE_URL = 'https://desktop.vision/api/credits/spin';
+
+async function spinCredits(interaction, env) {
+  const { DV_KEY } = env;
+  const { member, channel_type } = interaction;
+
   // Check if the interaction is in a DM (direct message)
-  if (interaction.channel_type === 1) {
+  if (channel_type === 1) {
     const dmResponse = {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: `Hello! To use this command please go to <#1162140966405284021>. If you haven't already, please make sure to link your Discord to your Desktop Vision account using /register.`,
+        content: 'This command is not available in DMs. Please use it in a server channel.',
       },
     };
 
     return new JsonResponse(dmResponse);
   }
 
-  const { DV_KEY } = env;
-  const url = 'https://desktop.vision/api/credits';
-  const key = DV_KEY;
-
-  const response = await fetch(url, {
+  const response = await fetch(REMOTE_URL, {
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': key,
+      'x-api-key': DV_KEY,
     },
     method: 'POST',
-    body: JSON.stringify({ discord_uid: interaction.member.user.id, type }),
+    body: JSON.stringify({ discord_uid: member?.user?.id }), // Use optional chaining
   });
 
   const body = await response.json();
+
+  if (body.credits === 0) {
+    const jsonResponseData = {
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: { content: 'You have no credits.' },
+      flags: 64,
+    };
+
+    return new JsonResponse(jsonResponseData);
+  }
 
   const finalEmbed = {
     description: body.message,
@@ -49,4 +61,4 @@ async function farmCredits(interaction, env, type = 'hourly') {
   return new JsonResponse(jsonResponseData);
 }
 
-export { farmCredits };
+export { spinCredits };
