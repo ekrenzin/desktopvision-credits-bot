@@ -9,6 +9,18 @@ import { JsonResponse } from '../responseTypes.js';
  * @returns {Object} A JSON response.
  */
 async function registerUser(interaction, env) {
+  // Check if the interaction is in a DM (direct message)
+  if (interaction.channel_type === 1) {
+    const dmResponse = {
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: {
+        content: `Hello! To use this command please go to <#1162140966405284021>. If you haven't already, please make sure to link your Discord to your Desktop Vision account using /register.`,
+      },
+    };
+
+    return new JsonResponse(dmResponse);
+  }
+
   // Get the user ID from the interaction
   const userId = interaction.member.user.id;
 
