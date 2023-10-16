@@ -1,19 +1,24 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
-import fetch from 'node-fetch';
 
 async function farmCredits(interaction, env, type = 'hourly') {
-  //const options = interaction.data.options;
-  // const local_url = 'http://127.0.0.1:8081/desktop-vision/us-central1/handleAPI/api/credits';
+  if (interaction.channel_type === 1) {
+    const dmResponse = {
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: {
+        content: `Hello! To use this command please go to <#1162140966405284021>. If you haven't already, please make sure to link your Discord to your Desktop Vision account using /register.`,
+      },
+    };
+
+    return new JsonResponse(dmResponse);
+  }
+
+  const options = interaction.data.options;
+  const local_url =
+    'http://127.0.0.1:8081/desktop-vision/us-central1/handleAPI/api/credits';
   const url = 'https://desktop.vision/api/credits';
   const key = env.DV_KEY;
 
-  if (!interaction || !interaction.member || !interaction.member.user) {
-    return new JsonResponse({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: { content: 'You must be logged in to use this command.' },
-    });
-  }
   const response = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
