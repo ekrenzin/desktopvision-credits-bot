@@ -10,7 +10,19 @@ async function spinCredits(interaction, env) {
     member: {
       user: { id },
     },
+    channel_type,
   } = interaction;
+
+  if (channel_type === 1) {
+    const dmResponse = {
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: {
+        content: 'This command is not available in DMs. Please use it in a server channel.',
+      },
+    };
+
+    return new JsonResponse(dmResponse);
+  }
 
   const response = await fetch(REMOTE_URL, {
     headers: {
