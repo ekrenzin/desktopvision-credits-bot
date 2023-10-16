@@ -6,10 +6,7 @@ const REMOTE_URL = 'https://desktop.vision/api/credits/spin';
 
 async function spinCredits(interaction, env) {
   const { DV_KEY } = env;
-  const {
-    member,
-    channel_type,
-  } = interaction;
+  const { member, channel_type } = interaction;
 
   // Check if the interaction is in a DM (direct message)
   if (channel_type === 1) {
@@ -33,16 +30,6 @@ async function spinCredits(interaction, env) {
   });
 
   const body = await response.json();
-
-  if (body.credits === 0) {
-    const jsonResponseData = {
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: { content: 'You have no credits.' },
-      flags: 64,
-    };
-
-    return new JsonResponse(jsonResponseData);
-  }
 
   const finalEmbed = {
     description: body.message,
