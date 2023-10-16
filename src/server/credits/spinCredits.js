@@ -7,12 +7,11 @@ const REMOTE_URL = 'https://desktop.vision/api/credits/spin';
 async function spinCredits(interaction, env) {
   const { DV_KEY } = env;
   const {
-    member: {
-      user: { id },
-    },
+    member,
     channel_type,
   } = interaction;
 
+  // Check if the interaction is in a DM (direct message)
   if (channel_type === 1) {
     const dmResponse = {
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -30,7 +29,7 @@ async function spinCredits(interaction, env) {
       'x-api-key': DV_KEY,
     },
     method: 'POST',
-    body: JSON.stringify({ discord_uid: id }),
+    body: JSON.stringify({ discord_uid: member?.user?.id }), // Use optional chaining
   });
 
   const body = await response.json();
