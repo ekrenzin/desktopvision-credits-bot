@@ -13,7 +13,7 @@ import {
   REGISTER_COMMAND,
   SPIN_COMMAND,
   DAILY_COMMAND,
-  BALANCE_COMMAND
+  BALANCE_COMMAND,
 } from '../commands.js';
 import { JsonResponse } from './responseTypes.js';
 import { farmCredits } from './credits/farmCredits.js';
