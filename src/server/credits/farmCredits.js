@@ -26,6 +26,9 @@ async function farmCredits(interaction, env, type = 'hourly') {
   const body = await response.json();
 
   const finalEmbed = {
+    title:
+      body.title ||
+      '<a:dvspin:1086082214472724602> Desktop Vision Credits <a:dvspin:1086082214472724602>',
     description: body.message,
     color: 0x0099ff,
     footer: {
