@@ -22,5 +22,18 @@ export const SPIN_COMMAND = {
 
 export const DAILY_COMMAND = {
   name: 'daily',
-  description: 'Get your daily credits! 15000 credits per day.',
+  description: 'Get your daily credits! 1500 credits per day.',
+};
+
+export const BALANCE_COMMAND = {
+  name: 'balance',
+  description: 'Check your credit balance.',
+  options: [
+    {
+      name: 'public',
+      description: 'Display your balance publicly.',
+      type: 5, // Boolean type
+      required: false,
+    },
+  ],
 };

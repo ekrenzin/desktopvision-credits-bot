@@ -3,6 +3,7 @@ import {
   REGISTER_COMMAND,
   SPIN_COMMAND,
   DAILY_COMMAND,
+  BALANCE_COMMAND
 } from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
@@ -67,6 +68,7 @@ const response = await fetch(url, {
     REGISTER_COMMAND,
     DAILY_COMMAND,
     SPIN_COMMAND,
+    BALANCE_COMMAND
   ]),
 });
 

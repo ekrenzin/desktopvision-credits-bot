@@ -13,6 +13,7 @@ import {
   REGISTER_COMMAND,
   SPIN_COMMAND,
   DAILY_COMMAND,
+  BALANCE_COMMAND
 } from '../commands.js';
 import { JsonResponse } from './responseTypes.js';
 import { farmCredits } from './credits/farmCredits.js';
@@ -65,6 +66,9 @@ router.post('/', async (request, env) => {
       }
       case DAILY_COMMAND.name.toLowerCase(): {
         return await farmCredits(interaction, env, 'daily');
+      }
+      case BALANCE_COMMAND.name.toLowerCase(): {
+        return await farmCredits(interaction, env, 'balance');
       }
       default:
         return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });
