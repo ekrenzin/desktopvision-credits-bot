@@ -25,7 +25,7 @@ async function manageCredits(interaction, env, type = 'balance') {
 
   const body = await response.json();
 
-  if (response.status !== 200) {
+  if (response.status !== 200 || 404) {
     const errorEmbed = {
       title: "Error!",
       description: body.message || "There was a error running this command. Please try again. If not, please contact support.",
