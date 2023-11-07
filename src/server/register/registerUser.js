@@ -31,13 +31,14 @@ async function registerUser(interaction, env) {
   // Parse response
   const body = await response.json();
 
-  if (response.status !== 400 || 404) {
+  if (response.status === 400 || response.status === 404) {
     const errorEmbed = {
-      title: "Error!",
-      description: "There was a error running this command. Please try again. If not, please contact support.",
+      title: 'Error!',
+      description:
+        'There was a error running this command. Please try again. If not, please contact support.',
       color: 0xff0000,
     };
-  
+
     return new JsonResponse({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: { embeds: [errorEmbed] },
