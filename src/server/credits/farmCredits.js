@@ -23,24 +23,20 @@ async function farmCredits(interaction, env, type = 'hourly') {
     body: JSON.stringify({ discord_uid: interaction.member.user.id, type }),
   });
 
-  if (interaction.channel.id !== '1157794301175144458') {
-    switch (true) {
-        case whitelisted_ids.includes(interaction.guild.id):
-            return new JsonResponse({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: { content: 'Hello! To use this command, head over to the channel name credits to begin!' },
-            });
-
-        default:
-            return new JsonResponse({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: { content: 'Hello! To use this command, you need to be in the [desktop.vision](https://discord.gg/meqCTTjp). If you already are please head over to #credits to begin!' },
-            });
-        }
-    }
-
-
   const body = await response.json();
+
+  if (response.status !== 200) {
+    const errorEmbed = {
+      title: "Error!",
+      description: body.message || "There was a error running this command. Please try again. If not, please contact support.",
+      color: 0xff0000,
+    };
+  
+    return new JsonResponse({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: { embeds: [errorEmbed] },
+    });
+  }
 
   const finalEmbed = {
     title:
