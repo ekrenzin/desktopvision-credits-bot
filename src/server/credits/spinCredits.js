@@ -33,7 +33,7 @@ async function spinCredits(interaction, env) {
     return new JsonResponse(jsonResponseData);
   }
 
-  if (response.status !== 200) {
+  if (response.status !== 200 || 404) {
     const errorEmbed = {
       title: "Error!",
       description: body.message || "There was a error running this command. Please try again. If not, please contact support.",
