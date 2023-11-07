@@ -31,10 +31,10 @@ async function registerUser(interaction, env) {
   // Parse response
   const body = await response.json();
 
-  if (response.status !== 200 || 404) {
+  if (response.status !== 400 || 404) {
     const errorEmbed = {
       title: "Error!",
-      description: body.message || "There was a error running this command. Please try again. If not, please contact support.",
+      description: "There was a error running this command. Please try again. If not, please contact support.",
       color: 0xff0000,
     };
   
