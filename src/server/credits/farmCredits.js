@@ -25,7 +25,7 @@ async function farmCredits(interaction, env, type = 'hourly') {
 
   const body = await response.json();
 
-  if (response.status !== 200 || 404) {
+  if (response.status !== 400 || 404) {
     const errorEmbed = {
       title: "Error!",
       description: body.message || "There was a error running this command. Please try again. If not, please contact support.",
