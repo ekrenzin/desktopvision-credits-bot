@@ -33,13 +33,15 @@ async function spinCredits(interaction, env) {
     return new JsonResponse(jsonResponseData);
   }
 
-  if (response.status !== 400 || 404) {
+  if (response.status === 400 || response.status === 404) {
     const errorEmbed = {
-      title: "Error!",
-      description: body.message || "There was a error running this command. Please try again. If not, please contact support.",
+      title: 'Error!',
+      description:
+        body.message ||
+        'There was a error running this command. Please try again. If not, please contact support.',
       color: 0xff0000,
     };
-  
+
     return new JsonResponse({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: { embeds: [errorEmbed] },
