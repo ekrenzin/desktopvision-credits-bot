@@ -1,5 +1,9 @@
-import { InteractionResponseType } from 'discord-interactions';
-import { JsonResponse } from '../responseTypes.js';
+import {
+    InteractionResponseType
+} from 'discord-interactions';
+import {
+    JsonResponse
+} from '../responseTypes.js';
 import dotenv from 'dotenv';
 
 /**
@@ -9,29 +13,33 @@ import dotenv from 'dotenv';
  * @returns {Object} A JSON response.
  */
 async function ping(interaction) {
-  dotenv.config({ path: '.dev.vars' });
-  const token = process.env.DISCORD_TEST_TOKEN;
-  const startTime = Date.now();
-  
-  const response = await fetch('https://discord.com/api/v10/gateway/bot', {
-    method: 'GET',
-  });
+    dotenv.config({
+        path: '.dev.vars'
+    });
+    const token = process.env.DISCORD_TEST_TOKEN;
+    const startTime = Date.now();
 
-  const endTime = Date.now();
-  const latency = endTime - startTime;
+    const response = await fetch('https://discord.com/api/v10/gateway/bot', {
+        method: 'GET',
+    });
 
-  return new JsonResponse({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: {
-      content: `Pong! Latency is ${latency}ms.`,
-    },
-  });
+    const endTime = Date.now();
+    const latency = endTime - startTime;
 
-  const finalEmbed = {
-    title: 'Pong!',
-    description: `API Latency is ${latency}ms.`,
-    color: 0x0099ff,
-  };
+    const finalEmbed = {
+        title: 'Pong!',
+        description: `API Latency is ${latency}ms.`,
+        color: 0x0099ff,
+    };
+
+    return new JsonResponse({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+            embeds: [finalEmbed]
+        },
+    });
 }
 
-export { ping };
+export {
+    ping
+};
