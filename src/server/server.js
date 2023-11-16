@@ -14,12 +14,14 @@ import {
   SPIN_COMMAND,
   DAILY_COMMAND,
   BALANCE_COMMAND,
+  PING_COMMAND,
 } from '../commands.js';
 import { JsonResponse } from './responseTypes.js';
 import { farmCredits } from './credits/farmCredits.js';
 import { spinCredits } from './credits/spinCredits.js';
 import { registerUser } from './register/registerUser.js';
 import { Response } from 'node-fetch';
+import { ping } from './utils/ping.js';
 
 const router = Router();
 
@@ -69,6 +71,9 @@ router.post('/', async (request, env) => {
       }
       case BALANCE_COMMAND.name.toLowerCase(): {
         return await farmCredits(interaction, env, 'balance');
+      }
+      case PING_COMMAND.name.toLowerCase(): {
+        return await ping(env);
       }
       default:
         return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });
