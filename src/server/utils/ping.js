@@ -1,6 +1,7 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
 import dotenv from 'dotenv';
+import process from 'node:process';
 
 /**
  * Responds with the latency between the bot and the Discord API.
