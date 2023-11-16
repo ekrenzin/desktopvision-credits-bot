@@ -37,3 +37,8 @@ export const BALANCE_COMMAND = {
     },
   ],
 };
+
+export const PING_COMMAND = {
+  name: 'ping',
+  description: "Check's the latency between the host and the discord API.",
+};
