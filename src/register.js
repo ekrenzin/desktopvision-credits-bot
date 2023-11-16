@@ -70,7 +70,7 @@ const response = await fetch(url, {
     DAILY_COMMAND,
     SPIN_COMMAND,
     BALANCE_COMMAND,
-    PING_COMMAND
+    PING_COMMAND,
   ]),
 });
 
