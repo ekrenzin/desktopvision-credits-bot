@@ -19,7 +19,7 @@ async function ping(interaction) {
     const token = process.env.DISCORD_TEST_TOKEN;
     const startTime = Date.now();
 
-    const response = await fetch('https://discord.com/api/v10/gateway/bot', {
+    const response = await fetch('https://discord.com/api/', {
         method: 'GET',
     });
 
