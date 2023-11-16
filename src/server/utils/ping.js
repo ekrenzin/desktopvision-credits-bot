@@ -1,18 +1,14 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
-import dotenv from 'dotenv';
-import process from 'node:process';
 
 /**
  * Responds with the latency between the bot and the Discord API.
  * @async
- * @param {Object} interaction - Discord interaction.
+ * @param {Object} env - Enviroment params used to send token to discord's API.
  * @returns {Object} A JSON response.
  */
-async function ping() {
-  dotenv.config({ path: '.dev.vars' });
-
-  const token = process.env.DISCORD_TEST_TOKEN;
+async function ping(env) {
+  const token = env.DISCORD_TOKEN;
 
   const startTime = Date.now();
 
