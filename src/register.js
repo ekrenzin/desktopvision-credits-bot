@@ -5,6 +5,7 @@ import {
   DAILY_COMMAND,
   BALANCE_COMMAND,
   PING_COMMAND,
+  SEND_COMMAND,
 } from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
@@ -71,6 +72,7 @@ const response = await fetch(url, {
     SPIN_COMMAND,
     BALANCE_COMMAND,
     PING_COMMAND,
+    SEND_COMMAND
   ]),
 });
 

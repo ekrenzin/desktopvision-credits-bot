@@ -44,7 +44,7 @@ async function farmCredits(interaction, env, type = 'hourly') {
     title:
       body.title ||
       '<a:dvspin:1086082214472724602> Desktop Vision Credits <a:dvspin:1086082214472724602>',
-    description: body.message,
+    description: body.message || 'You have successfully earned credits!',
     color: 0x0099ff,
     footer: {
       text: 'Want more play time? Visit https://desktop.vision/app/#/shop',

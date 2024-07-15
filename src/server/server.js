@@ -15,6 +15,7 @@ import {
   DAILY_COMMAND,
   BALANCE_COMMAND,
   PING_COMMAND,
+  SEND_COMMAND,
 } from '../commands.js';
 import { JsonResponse } from './responseTypes.js';
 import { farmCredits } from './credits/farmCredits.js';
@@ -22,6 +23,7 @@ import { spinCredits } from './credits/spinCredits.js';
 import { registerUser } from './register/registerUser.js';
 import { Response } from 'node-fetch';
 import { ping } from './utils/ping.js';
+import { sendCredits } from './credits/sendCredits.js';
 
 const router = Router();
 
@@ -74,6 +76,9 @@ router.post('/', async (request, env) => {
       }
       case PING_COMMAND.name.toLowerCase(): {
         return await ping(env);
+      }
+      case SEND_COMMAND.name.toLowerCase(): {
+        return await sendCredits(interaction, env);
       }
       default:
         return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });

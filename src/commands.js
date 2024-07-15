@@ -17,7 +17,7 @@ export const REGISTER_COMMAND = {
 export const SPIN_COMMAND = {
   name: 'spin',
   description:
-    'Spin the wheel to win credits! 100 credits per spin. Win up to 1000 credits!',
+    'Spin the wheel to win FREE credits! Win up to 1000 credits!',
 };
 
 export const DAILY_COMMAND = {
@@ -41,4 +41,23 @@ export const BALANCE_COMMAND = {
 export const PING_COMMAND = {
   name: 'ping',
   description: "Check's the latency between the host and the discord API.",
+};
+
+export const SEND_COMMAND = {
+  name: 'send',
+  description: 'Send credits to another user.',
+  options: [
+    {
+      name: 'user',
+      description: 'The user to send credits to.',
+      type: 6, // User type
+      required: true,
+    },
+    {
+      name: 'amount',
+      description: 'The amount of credits to send.',
+      type: 4, // Integer type
+      required: true,
+    },
+  ],
 };
