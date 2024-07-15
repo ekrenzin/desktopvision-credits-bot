@@ -45,13 +45,11 @@ async function sendCredits(interaction, env) {
       data: { embeds: [errorEmbed] },
     });
   }
-
   // Send a DM to the user
   return new JsonResponse({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
       content: body.message,
-      flags: 64, // Ephemeral flag
     },
   });
 }
