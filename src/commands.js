@@ -61,3 +61,16 @@ export const SEND_COMMAND = {
     },
   ],
 };
+
+export const CHECK_UID_COMMAND = {
+  name: 'checkuid',
+  description: 'Check the UID of a user.',
+  options: [
+    {
+      name: 'user',
+      description: 'The user to check the UID of.',
+      type: 6, // User type
+      required: true,
+    },
+  ],
+};
