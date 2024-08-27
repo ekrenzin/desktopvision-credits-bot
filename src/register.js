@@ -6,7 +6,7 @@ import {
   BALANCE_COMMAND,
   PING_COMMAND,
   SEND_COMMAND,
-  CHECK_UID_COMMAND
+  CHECK_UID_COMMAND,
 } from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
@@ -74,7 +74,7 @@ const response = await fetch(url, {
     BALANCE_COMMAND,
     PING_COMMAND,
     SEND_COMMAND,
-    CHECK_UID_COMMAND
+    CHECK_UID_COMMAND,
   ]),
 });
 

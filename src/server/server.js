@@ -25,6 +25,7 @@ import { registerUser } from './users/registerUser.js';
 import { Response } from 'node-fetch';
 import { ping } from './utils/ping.js';
 import { sendCredits } from './credits/sendCredits.js';
+import { checkUser } from './users/checkUser.js';
 
 const router = Router();
 
@@ -82,7 +83,7 @@ router.post('/', async (request, env) => {
         return await sendCredits(interaction, env);
       }
       case CHECK_UID_COMMAND.name.toLowerCase(): {
-        
+        return await checkUser(interaction, env);
       }
       default:
         return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });

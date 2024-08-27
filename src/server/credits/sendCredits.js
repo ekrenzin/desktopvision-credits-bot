@@ -11,13 +11,17 @@ import { JsonResponse } from '../responseTypes.js';
 async function sendCredits(interaction, env) {
   // Get the user ID from the interaction
   const userId = interaction.member.user.id;
-  const toId = interaction.data.options[0].value
-  const amount = interaction.data.options[1].value
+  const toId = interaction.data.options[0].value;
+  const amount = interaction.data.options[1].value;
   // Formulate API request
   // const localUrl = 'http://127.0.0.1:8081/desktop-vision/us-central1/handleAPI/api/credits/register';
   const url = 'https://desktop.vision/api/credits/send';
   const key = env.DV_KEY;
-  const requestBody = JSON.stringify({ discord_uid: userId, amount: amount, to: toId });
+  const requestBody = JSON.stringify({
+    discord_uid: userId,
+    amount: amount,
+    to: toId,
+  });
 
   // Execute POST request
   const response = await fetch(url, {

@@ -2,13 +2,13 @@ import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
 
 /**
- * Registers a user and sends a private message.
+ * Checks a user UID and sends a private message. MUST BE ADMIN.
  * @async
  * @param {Object} interaction - Discord interaction.
  * @param {Object} env - Environment variables.
  * @returns {Object} A JSON response.
  */
-async function registerUser(interaction, env) {
+async function checkUser(interaction, env) {
   // Get the user ID from the interaction
   const userId = interaction.member.user.id;
 
@@ -56,4 +56,4 @@ async function registerUser(interaction, env) {
   });
 }
 
-export { registerUser };
+export { checkUser };

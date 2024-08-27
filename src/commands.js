@@ -16,8 +16,7 @@ export const REGISTER_COMMAND = {
 
 export const SPIN_COMMAND = {
   name: 'spin',
-  description:
-    'Spin the wheel to win FREE credits! Win up to 1000 credits!',
+  description: 'Spin the wheel to win FREE credits! Win up to 1000 credits!',
 };
 
 export const DAILY_COMMAND = {
