@@ -1,6 +1,5 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
-import fetch from 'node-fetch';
 
 const REMOTE_URL = 'https://desktop.vision/api/credits/spin';
 

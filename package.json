@@ -22,8 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "discord-interactions": "^3.4.0",
-    "itty-router": "^4.0.13",
-    "node-fetch": "^3.3.2"
+    "itty-router": "^4.0.13"
   },
   "devDependencies": {
     "c8": "^8.0.0",

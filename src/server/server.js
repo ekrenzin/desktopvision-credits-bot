@@ -22,7 +22,6 @@ import { JsonResponse } from './responseTypes.js';
 import { farmCredits } from './credits/farmCredits.js';
 import { spinCredits } from './credits/spinCredits.js';
 import { registerUser } from './users/registerUser.js';
-import { Response } from 'node-fetch';
 import { ping } from './utils/ping.js';
 import { sendCredits } from './credits/sendCredits.js';
 import { checkUser } from './users/checkUser.js';

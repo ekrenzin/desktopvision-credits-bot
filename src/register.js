@@ -10,7 +10,6 @@ import {
 } from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
-import fetch from 'node-fetch';
 
 /**
  * This file is meant to be run from the command line, and is not used by the

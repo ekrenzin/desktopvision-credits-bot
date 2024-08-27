@@ -1,6 +1,5 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
-import fetch from 'node-fetch';
 
 async function manageCredits(interaction, env, type = 'balance') {
   //const options = interaction.data.options;

@@ -1,6 +1,5 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { JsonResponse } from '../responseTypes.js';
-import fetch from 'node-fetch';
 
 async function farmCredits(interaction, env, type = 'hourly') {
   //const options = interaction.data.options;

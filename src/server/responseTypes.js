@@ -1,5 +1,3 @@
-import { Response } from 'node-fetch';
-
 /**
  * JsonResponse class extending Response.
  * Transforms input to JSON string.
